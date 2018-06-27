@@ -10,8 +10,7 @@ self.addEventListener('install', event => {
         './js/main.js',
         './css/custom.css',
         './css/bootstrap.min.css',
-        './imgs/icon.png',
-        './https://fonts.googleapis.com/css?family=Roboto:400,500,700'
+        'https://fonts.googleapis.com/css?family=Roboto:400,500,700'
       ]);
     })
   );
