@@ -67,3 +67,16 @@ function registerServiceWorker() {
         console.log("Not registered");
     })
 }
+
+function openDatabase() {
+    // If the browser doesn't support service worker,
+    // we don't care about having a database
+    if (!navigator.serviceWorker) {
+      return Promise.resolve();
+    }
+  
+    return idb.open('test-db', 1, function(upgradeDb) {
+      const keyValStore = upgradeDb.createObjectStore('keyval');
+      keyValStore.put('world', 'hello');
+    });
+  }
