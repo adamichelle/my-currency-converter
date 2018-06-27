@@ -4,14 +4,14 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(staticCacheName).then( cache => {
       return cache.addAll([
-        '/skeleton',
-        'js/jquery.js',
-        'js/bootstrap.min.js',
-        'js/main.js',
-        'css/custom.css',
-        'css/bootstrap.min.css',
-        'imgs/icon.png',
-        'https://fonts.googleapis.com/css?family=Roboto:400,500,700'
+        './',
+        './js/jquery.js',
+        './js/bootstrap.min.js',
+        './js/main.js',
+        './css/custom.css',
+        './css/bootstrap.min.css',
+        './imgs/icon.png',
+        './https://fonts.googleapis.com/css?family=Roboto:400,500,700'
       ]);
     })
   );
