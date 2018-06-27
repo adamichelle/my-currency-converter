@@ -18,26 +18,48 @@ self.addEventListener('fetch', event => {
     console.log('fetch request : ' + event.request.url)
     event.respondWith(
       caches.match(event.request).then( request => {
-        if (request) { // if cache is available, respond with cache
+        /* if (request) { // if cache is available, respond with cache
           console.log('responding with cache : ' + event.request.url)
           return request
         } else {       // if there are no cache, try fetching request
           console.log('file is not cached, fetching : ' + event.request.url)
           return fetch(event.request)
-        }
+        } */
   
         // You can omit if/else for console.log & put one line below like this too.
-        // return request || fetch(e.request)
+        return request || fetch(e.request);
       })
     )
-  })
+  });
   
   // Cache resources
-  self.addEventListener('install', event => {
+self.addEventListener('install', event => {
     event.waitUntil(
       caches.open(cache_name).then(cache => {
         console.log('installing cache : ' + cache_name)
         return cache.addAll(assets)
+      })
+    )
+});
+
+  // Delete outdated caches
+self.addEventListener('activate', event => {
+    event.waitUntil(
+      caches.keys().then( keyList => {
+        // `keyList` contains all cache names under your username.github.io
+        // filter out ones that has this app prefix to create white list
+        const cacheWhitelist = keyList.filter( key => {
+          return key.indexOf(app_prefix)
+        })
+        // add current cache name to white list
+        cacheWhitelist.push(cache_name)
+  
+        return Promise.all(keyList.map( (key, i) => {
+          if (cacheWhitelist.indexOf(key) === -1) {
+            console.log('deleting cache : ' + keyList[i] )
+            return caches.delete(keyList[i])
+          }
+        }))
       })
     )
   });
