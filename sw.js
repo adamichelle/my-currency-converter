@@ -11,7 +11,7 @@ const assets = [
   `/${repository}/assets/css/bootstrap.min.css`, 
   `/${repository}/assets/css/custom.css`,
   `https://fonts.googleapis.com/css?family=Roboto:400,500,700`  
-]
+];
 
 
 self.addEventListener('install', event => {
