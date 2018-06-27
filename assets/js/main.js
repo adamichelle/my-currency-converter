@@ -59,7 +59,7 @@ function getAllCurrencies() {
 
 function registerServiceWorker() {
     if(!navigator.serviceWorker) return;
-    navigator.serviceWorker.register('/{repository}/sw.js', {scope: '/{repository}/'})
+    navigator.serviceWorker.register('./sw.js', {scope: '/'})
     .then( function(){
         console.log("Registered");
     })
