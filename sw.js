@@ -15,7 +15,7 @@ const assets = [
 
 // Respond with cached resources
 self.addEventListener('fetch', event => {
-    console.log('fetch request : ' + event.request.url)
+    // console.log('fetch request : ' + event.request.url)
     event.respondWith(
       caches.match(event.request).then( request => {
         /* //This was to check if it was working
