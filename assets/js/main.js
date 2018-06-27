@@ -76,8 +76,10 @@ function openDatabase() {
       return Promise.resolve();
     }
   
-    return idb.open('test-db', 1, function(upgradeDb) {
-      const keyValStore = upgradeDb.createObjectStore('keyval');
-      keyValStore.put('world', 'hello');
+    return idb.open('currency-converter', 1, function(upgradeDb) {
+      var store = upgradeDb.createObjectStore('currencies', {
+        keyPath: 'id'
+      });
+      store.createIndex('by-currencyName', 'currencyName');
     });
-  }
+}
