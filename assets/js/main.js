@@ -27,6 +27,7 @@ window.addEventListener("load", e => {
     });
 
     registerServiceWorker();
+    openDatabase();
 });
 
 //to get the list of all currencies for the drop down
