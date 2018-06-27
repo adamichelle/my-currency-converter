@@ -1,7 +1,7 @@
-const app_prefix = 'CurrencyConverter_';
-const version = 'version_01';    
-const cache_name = `${app_prefix}${version}`;
-const repository = 'my-currency-converter';
+const app_prefix = 'CurrencyConverter_'; //name of the app
+const version = 'version_01';    //version of cache
+const cache_name = `${app_prefix}${version}`; //cache name
+const repository = 'my-currency-converter'; //name of the repo
 const assets = [                            
   `/${repository}/`,                     
   `/${repository}/index.html`,
@@ -11,21 +11,13 @@ const assets = [
   `/${repository}/assets/css/bootstrap.min.css`, 
   `/${repository}/assets/css/custom.css`,
   `https://fonts.googleapis.com/css?family=Roboto:400,500,700`  
-];
+]; //assets to be cached
 
-// Respond with cached resources
+// Respond with cached resources, if there are any. If not, try fetching request
 self.addEventListener('fetch', event => {
-    // console.log('fetch request : ' + event.request.url)
+    
     event.respondWith(
       caches.match(event.request).then( request => {
-        /* //This was to check if it was working
-        if (request) { // if cache is available, respond with cache
-          console.log('responding with cache : ' + event.request.url)
-          return request
-        } else {       // if there are no cache, try fetching request
-          console.log('file is not cached, fetching : ' + event.request.url)
-          return fetch(event.request)
-        } */
         return request || fetch(event.request);
       })
     )
@@ -45,8 +37,6 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
     event.waitUntil(
       caches.keys().then( keyList => {
-        // `keyList` contains all cache names under your username.github.io
-        // filter out ones that has this app prefix to create white list
         const cacheWhitelist = keyList.filter( key => {
           return key.indexOf(app_prefix)
         })
