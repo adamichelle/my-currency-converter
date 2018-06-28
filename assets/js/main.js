@@ -28,28 +28,32 @@ class MainController{
                 });
             });
             
-            this.displayCurrencyDropdown(currenciesArray);
+            this.getCurrenciesForDisplay(currenciesArray);
                 
         });
     }
 
-    displayCurrencyDropdown(currenciesArray){
+    getCurrenciesForDisplay(currenciesArray) {
+        return currenciesArray.map(function(currency){
+            this.displayCurrencyDropdown();
+        })
+    }
+
+    displayCurrencyDropdown(){
         const select1 = document.getElementById("fromCurrency");
         const select2 = document.getElementById("toCurrency");
-        return currenciesArray.map(function(currency){
 
-            let options1 = document.createElement("option");
-            options1.setAttribute("value", `${currency.id}`);
-            options1.innerHTML = `${currency.currencyName} - ${currency.id}`;
+        let options1 = document.createElement("option");
+        options1.setAttribute("value", `${currency.id}`);
+        options1.innerHTML = `${currency.currencyName} - ${currency.id}`;
 
-            let options2 = document.createElement("option");
-            options2.setAttribute("value", `${currency.id}`);
-            options2.innerHTML = `${currency.currencyName} - ${currency.id}`;
+        let options2 = document.createElement("option");
+        options2.setAttribute("value", `${currency.id}`);
+        options2.innerHTML = `${currency.currencyName} - ${currency.id}`;
 
-            select1.appendChild(options1);
-            select2.appendChild(options2);
+        select1.appendChild(options1);
+        select2.appendChild(options2);
                 
-        });
     }
 
     showCachedCurrencies(){
