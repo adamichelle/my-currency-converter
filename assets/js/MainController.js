@@ -1,6 +1,6 @@
-export class MainController{
+export default class MainController{
     constructor(){
-        this.init();
+        // this.init();
         this.dbPromise = openDatabase();
         this.registerServiceWorker();
         
