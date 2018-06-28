@@ -108,7 +108,7 @@ class MainController{
         let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
         console.log(url);
         return fetch(url).then((response) => response.json())
-        .then(function(data){
+        .then((data) => {
             let resultObj = data;
             let result;
             let newAmount, convertedAmount;
