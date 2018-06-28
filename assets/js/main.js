@@ -105,12 +105,15 @@ class MainController{
         this.currencyFrom = currencyFrom;
         this.currencyTo = currencyTo;
         let query = `${this.currencyFrom}_${this.currencyTo}`;
-        let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
+        let revertedQuery = `${this.currencyTo}_${this.currencyFrom}`
+        let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query},${revertedQuery}&compact=ultra`;
         console.log(url);
         return fetch(url).then((response) => response.json())
         .then((data) => {
-            let resultObj = data;
-            let result;
+            let rates = data.results;
+            let ratesArray = object.values(rates);
+            console.log(ratesArray);
+            /* let result;
             let newAmount, convertedAmount;
             
             for(const key in resultObj){
@@ -119,7 +122,7 @@ class MainController{
              console.log(result);
             newAmount = this.amount * result;
             convertedAmount = newAmount.toFixed(2);
-            document.getElementById("toAmount").value = convertedAmount;
+            document.getElementById("toAmount").value = convertedAmount; */
         })
     }
 }
@@ -132,10 +135,10 @@ function openDatabase(){
     }
     
     return idb.open('currency-converter', 1, function(upgradeDb) {
-        var store = upgradeDb.createObjectStore('currency-list', {
+        let currencyListStore = upgradeDb.createObjectStore('currency-list', {
         keyPath: 'id'
         });
-        store.createIndex('by-currencyName', 'currencyName');
+        currencyListStore.createIndex('by-currencyName', 'currencyName');
     });
 }
 
