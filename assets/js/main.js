@@ -46,7 +46,7 @@ class MainController{
             });
     }
 
-    static registerServiceWorker(){
+    registerServiceWorker(){
         if(!navigator.serviceWorker) return;
         navigator.serviceWorker.register('/my-currency-converter/sw.js', {scope: '/my-currency-converter/'})
         .then( function(){
