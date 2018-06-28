@@ -37,7 +37,7 @@ class MainController{
                 });
             });
             
-            this.displayCurrencyDropdown(currenciesArray);
+            return this.displayCurrencyDropdown(currenciesArray);
                 
         });
     }
