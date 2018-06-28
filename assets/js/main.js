@@ -8,6 +8,8 @@ class MainController{
         this.select1 = select1;
         this.select2 = select2;
         this.dbPromise = openDatabase();
+
+        console.log(this.dbPromise);
         
         const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
         fetch(currencyListUrl)
@@ -80,5 +82,5 @@ window.addEventListener("load", (e) => {
     const select1 = document.getElementById("fromCurrency");
     const select2 = document.getElementById("toCurrency");
     myCurrencyConverter.init(select1, select2);
-    myCurrencyConverter.registerServiceWorker();
+    // myCurrencyConverter.registerServiceWorker();
 })
