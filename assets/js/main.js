@@ -70,7 +70,7 @@ class MainController{
             // if (!db || MainController) return;
 
             const index = db.transaction('currency-list')
-            .objectStore('currency-list').index('currencyName');
+            .objectStore('currency-list').index('by-currencyName');
 
             return index.getAll().then(function(currencies) {
                 // indexController._postsView.addPosts(messages.reverse());
