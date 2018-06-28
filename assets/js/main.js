@@ -12,7 +12,7 @@ class MainController{
             .then((resp) => resp.json()) // Transform the data into json
             .then(function(data){
                 let currencies = data.results;
-                currenciesArray = Object.values(currencies);
+                let currenciesArray = Object.values(currencies);
                 currenciesArray.sort((a, b) => a.currencyName.localeCompare(b.currencyName)) //sort the surrencies in alphabetical order by currency Name
                 
                 return currenciesArray.map(function(currency){
