@@ -100,14 +100,14 @@ class MainController{
         })
     }
 
-    get convertedAmount(amount, currencyFrom, currencyTo){
+    convertCurrency(amount, currencyFrom, currencyTo){
         this.amount = amount;
         this.currencyFrom = currencyFrom;
         this.currencyTo = currencyTo;
         let query = `${this.currencyFrom}_${this.currencyTo}`;
         let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
         console.log(url);
-        fetch(url).then((response) => response.json())
+        return fetch(url).then((response) => response.json())
         .then(function(data){
             let resultObj = data;
             let result;
@@ -144,8 +144,12 @@ function openDatabase(){
 
 window.addEventListener("load", (e) => {
     let myCurrencyConverter = new MainController();
-    let amount = document.getElementById("fromAmount").value,
-    currencyFrom = document.getElementById("fromCurrency").value,
-    currencyTo = document.getElementById("toCurrency").value;
-    document.getElementById("convert").addEventListener("click", myCurrencyConverter.convertCurrency(amount, currencyFrom, currencyTo));
+    
+    document.getElementById("convert").addEventListener("click", () => {
+        let amount = document.getElementById("fromAmount").value,
+        currencyFrom = document.getElementById("fromCurrency").value,
+        currencyTo = document.getElementById("toCurrency").value;
+        myCurrencyConverter.convertCurrency(amount, currencyFrom, currencyTo);
+
+    });
 });
