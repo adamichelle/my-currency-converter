@@ -124,7 +124,7 @@ class MainController{
             });
 
             let result;
-            let newAmount, convertedAmount;
+            let newAmount, convertedAmount, rateConversionName;
             
             ratesArray.map( function (rate) {
                 result = rate.val;
