@@ -1,8 +1,10 @@
 class MainController{
     constructor(){ 
         this.dbPromise = openDatabase();
-        this.init();
         this.registerServiceWorker();
+        this.showCachedCurrencies().then(function() {
+            init();
+        });
     }
 
     init() {
