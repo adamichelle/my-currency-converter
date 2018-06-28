@@ -65,8 +65,9 @@ class MainController{
             .objectStore('currency-list').index('currencyName');
 
             return index.getAll().then(function(currencies) {
-            // indexController._postsView.addPosts(messages.reverse());
-                MainController.displayCurrencyDropdown(currencies)
+                // indexController._postsView.addPosts(messages.reverse());
+                // MainController.displayCurrencyDropdown(currencies)
+                console.log(currencies);
             });
         });
         
