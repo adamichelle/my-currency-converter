@@ -1,4 +1,4 @@
-import MainController from 'MainController';
+import MainController from './MainController';
 
 window.addEventListener("load", (e) => {
     MainController.init();
