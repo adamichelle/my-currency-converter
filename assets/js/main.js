@@ -106,7 +106,7 @@ class MainController{
         this.currencyTo = currencyTo;
         let query = `${this.currencyFrom}_${this.currencyTo}`;
         let revertedQuery = `${this.currencyTo}_${this.currencyFrom}`
-        let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query},${revertedQuery}&compact=y`;
+        let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query},${revertedQuery}`;
         console.log(url);
         return fetch(url).then((response) => response.json())
         .then((data) => {
