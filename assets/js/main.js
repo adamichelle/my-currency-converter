@@ -110,8 +110,9 @@ class MainController{
         fetch(url).then((response) => response.json())
         .then(function(data){
             let resultObj = data;
+            let result;
             for(const key in resultObj){
-                let result = resultObj[key];               
+                result = resultObj[key];               
             }
              console.log(result);
             newAmount = amount * result;
