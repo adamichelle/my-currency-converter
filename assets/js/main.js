@@ -121,7 +121,7 @@ class MainController{
                 if(!db) return;
 
                 let tx = db.transaction('rate-list', 'readwrite');
-                let rateListstore = tx.objectStore('rate-list');
+                let rateListStore = tx.objectStore('rate-list');
                 ratesArray.forEach(function(rate) {
                   rateListStore.put(rate);
                 });
