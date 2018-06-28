@@ -27,7 +27,7 @@ class MainController{
                 let tx = db.transaction('currency-list', 'readwrite');
                 let currencyListStore = tx.objectStore('currency-list');
                 currenciesArray.forEach(function(currency) {
-                  store.put(currency);
+                  currencyListStore.put(currency);
                 });
             });
             
@@ -123,7 +123,7 @@ class MainController{
                 let tx = db.transaction('rate-list', 'readwrite');
                 let rateListstore = tx.objectStore('rate-list');
                 ratesArray.forEach(function(rate) {
-                  store.put(rate);
+                  rateListStore.put(rate);
                 });
             });
             /* let result;
