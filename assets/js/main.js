@@ -25,7 +25,7 @@ class MainController{
                 if(!db) return;
 
                 let tx = db.transaction('currency-list', 'readwrite');
-                let store = tx.objectStore('currency-list');
+                let currencyListStore = tx.objectStore('currency-list');
                 currenciesArray.forEach(function(currency) {
                   store.put(currency);
                 });
@@ -113,7 +113,19 @@ class MainController{
             let rates = data.results;
             
             let ratesArray = Object.values(rates);
+           
             console.log(ratesArray);
+
+            this.dbPromise.then(function(db){
+                
+                if(!db) return;
+
+                let tx = db.transaction('rate-list', 'readwrite');
+                let rateListstore = tx.objectStore('rate-list');
+                ratesArray.forEach(function(rate) {
+                  store.put(rate);
+                });
+            });
             /* let result;
             let newAmount, convertedAmount;
             
@@ -140,6 +152,11 @@ function openDatabase(){
         keyPath: 'id'
         });
         currencyListStore.createIndex('by-currencyName', 'currencyName');
+
+        let rateListstore = upgradeDb.createObjectStore('rate-list', {
+            keyPath: 'id'
+        });
+        rateListstore.createIndex('by-rateQuery', 'id')
     });
 }
 
