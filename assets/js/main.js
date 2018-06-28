@@ -110,14 +110,10 @@ class MainController{
         console.log(url);
         return fetch(url).then((response) => response.json())
         .then((data) => {
-            let rates = data.results;
-            
+            let rates = data.results;       
             let ratesArray = Object.values(rates);
-           
-            console.log(ratesArray);
 
             this.dbPromise.then(function(db){
-                
                 if(!db) return;
 
                 let tx = db.transaction('rate-list', 'readwrite');
@@ -126,14 +122,17 @@ class MainController{
                   rateListStore.put(rate);
                 });
             });
-            /* let result;
+
+            let result;
             let newAmount, convertedAmount;
             
-            for(const key in resultObj){
-                result = resultObj[key];               
-            }
-             console.log(result);
-            newAmount = this.amount * result;
+            ratesArray.map( function (rate) {
+                result = rate.val;
+                rateConversionName = rate.id;
+            })
+        
+            console.log(result);
+            /* newAmount = this.amount * result;
             convertedAmount = newAmount.toFixed(2);
             document.getElementById("toAmount").value = convertedAmount; */
         })
