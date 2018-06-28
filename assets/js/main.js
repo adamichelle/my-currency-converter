@@ -113,7 +113,7 @@ class MainController{
             for(const key in resultObj){
                 let result = resultObj[key];               
             }
-            // console.log(result);
+             console.log(result);
             newAmount = amount * result;
             convertedAmount = newAmount.toFixed(2);
             document.getElementById("toAmount").value = convertedAmount;
