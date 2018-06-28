@@ -4,6 +4,7 @@ class MainController{
         this.registerServiceWorker();
         this.showCachedCurrencies().then(() => {
             this.onSocketOpen();
+            console.log("hey");
         })
         .catch(() => {
             return;
