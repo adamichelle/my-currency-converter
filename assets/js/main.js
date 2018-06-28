@@ -4,6 +4,9 @@ class MainController{
         this.registerServiceWorker();
         this.showCachedCurrencies().then(() => {
             this.onSocketOpen();
+        })
+        .catch(() => {
+            return;
         });
     }
 
@@ -59,7 +62,7 @@ class MainController{
             // if we're already showing posts, eg shift-refresh
             // or the very first load, there's no point fetching
             // posts from IDB
-            if (!db || (document.getElementById("fromCurrency").value === '' && document.getElementById("toCurrency").value === '')) return;
+            if (!db || (document.getElementById("fromCurrency").value != '' && document.getElementById("toCurrency").value != '')) return;
 
             const index = db.transaction('currency-list')
             .objectStore('currency-list').index('currencyName');
