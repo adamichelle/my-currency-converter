@@ -4,11 +4,9 @@ class MainController{
         this.registerServiceWorker();
     }
 
-    static init(select1, select2, amountInput, amountOutput){
-        const select1 = document.getElementById("fromCurrency");
-        const select2 = document.getElementById("toCurrency");
-        const amountInput = document.getElementById("fromAmount");
-        const amountOutput = document.getElementById("toAmount");
+    static init(select1, select2){
+        this.select1 = select1;
+        this.select2 = select2;
         
             const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
             fetch(currencyListUrl)
@@ -38,5 +36,7 @@ class MainController{
 }
 
 window.addEventListener("load", (e) => {
-    MainController.init();
+    const select1 = document.getElementById("fromCurrency");
+    const select2 = document.getElementById("toCurrency");
+    MainController.init(select1, select2);
 })
