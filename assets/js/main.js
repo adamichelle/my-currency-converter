@@ -111,6 +111,7 @@ class MainController{
         .then(function(data){
             let resultObj = data;
             let result;
+            let newAmount, convertedAmount;
             for(const key in resultObj){
                 result = resultObj[key];               
             }
