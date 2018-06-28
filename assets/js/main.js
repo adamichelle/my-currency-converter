@@ -106,13 +106,13 @@ class MainController{
         this.currencyTo = currencyTo;
         let query = `${currencyFrom}_${currencyTo}`;
         let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
-        
+        console.log(url);
         fetch(url).then((response) => response.json())
         .then(function(data){
             let resultObj = data;
             let result;
             let newAmount, convertedAmount;
-            console.log(data);
+            
             for(const key in resultObj){
                 result = resultObj[key];               
             }
