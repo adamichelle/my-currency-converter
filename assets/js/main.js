@@ -7,13 +7,7 @@ class MainController{
         .catch( () => {
             this.showCachedCurrencies();
         });
-        /* this.showCachedCurrencies().then(() => {
-            this.onSocketOpen();
-            console.log("hey");
-        })
-        .catch(() => {
-            return;
-        }); */
+
     }
 
     onSocketOpen() {
@@ -73,9 +67,6 @@ class MainController{
             .objectStore('currency-list').index('by-currencyName');
 
             return index.getAll().then(function(currencies) {
-                // indexController._postsView.addPosts(messages.reverse());
-                // MainController.displayCurrencyDropdown(currencies)
-                console.log(currencies);
                 const select1 = document.getElementById("fromCurrency");
                 const select2 = document.getElementById("toCurrency");
                 return currencies.map(function(currency){
@@ -108,6 +99,26 @@ class MainController{
             console.log("Not registered");
         })
     }
+
+    convertCurency(amount, currencyFrom, currencyTo){
+        this.amount = amount;
+        this.currencyFrom = currencyFrom;
+        this.currencyTo = currencyTo;
+        let query = `${currencyFrom}_${currencyTo}`;
+        let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
+        
+        fetch(url).then((response) => response.json())
+        .then(function(data){
+            let resultObj = data;
+            for(const key in resultObj){
+                result = resultObj[key];               
+            }
+            // console.log(result);
+            newAmount = amount * result;
+            convertedAmount = newAmount.toFixed(2);
+            document.getElementById("toAmount").value = convertedAmount;
+        })
+    }
 }
 
 function openDatabase(){
@@ -130,4 +141,8 @@ function openDatabase(){
 
 window.addEventListener("load", (e) => {
     let myCurrencyConverter = new MainController();
+    let amount = document.getElementById("fromAmount").value,
+    currencyFrom = document.getElementById("fromCurrency").value,
+    currencyTo = document.getElementById("toCurrency").value;
+    document.getElementById("convert").addEventListener("click", myCurrencyConverter.convertCurrency(amount, currencyFrom, currencyTo))
 });
