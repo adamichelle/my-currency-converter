@@ -50,6 +50,20 @@ class MainController{
         });
     }
 
+    showCachedCurrencies(){
+        let MainController = this;
+        if (!db || MainController.displayCurrencyDropdown(currenciesArray)) return;
+
+        const index = db.transaction('currency-list')
+        .objectStore('currency-list').index('currencyName');
+
+        return index.getAll().then(function(currencies) {
+        // indexController._postsView.addPosts(messages.reverse());
+            MainController.displayCurrencyDropdown(currenciesArray)
+        });
+    }
+
+
     registerServiceWorker(){
         if(!navigator.serviceWorker) return;
         navigator.serviceWorker.register('/my-currency-converter/sw.js', {scope: '/my-currency-converter/'})
@@ -82,4 +96,4 @@ function openDatabase(){
 
 window.addEventListener("load", (e) => {
     let myCurrencyConverter = new MainController();
-})
+});
