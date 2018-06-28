@@ -3,7 +3,7 @@ class MainController{
         this.dbPromise = openDatabase();
         this.registerServiceWorker();
         this.onSocketOpen()
-        .then( () => console.log("Retriving currencies from api!"))
+        .then( () => {console.log("Retriving currencies from api!")})
         .catch( () => {
             this.showCachedCurrencies();
         });
