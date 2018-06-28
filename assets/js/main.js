@@ -4,10 +4,10 @@ class MainController{
         this.registerServiceWorker();
     }
 
-    static init(select1, select2){
+    init(select1, select2){
         this.select1 = select1;
         this.select2 = select2;
-        this.dbPromise = openDatabase();
+        
         
         const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
         fetch(currencyListUrl)
@@ -57,7 +57,7 @@ class MainController{
         })
     }
 
-    static openDatabase(){
+    openDatabase(){
         // If the browser doesn't support service worker,
         // then no need to have a database
         if (!navigator.serviceWorker) {
@@ -70,12 +70,15 @@ class MainController{
             });
             store.createIndex('by-currencyName', 'currencyName');
         });
-        }
+    }
 }
+
+let myCurrencyConverter = new MainController();
+
 
 window.addEventListener("load", (e) => {
     const select1 = document.getElementById("fromCurrency");
     const select2 = document.getElementById("toCurrency");
-    MainController.init(select1, select2);
+    myCurrencyConverter.init(select1, select2);
     MainController.registerServiceWorker();
 })
