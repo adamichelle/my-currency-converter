@@ -3,11 +3,11 @@ class MainController{
         this.dbPromise = openDatabase();
         this.registerServiceWorker();
         this.showCachedCurrencies().then(function() {
-            init();
+            onSocketOpen();
         });
     }
 
-    init() {
+    onSocketOpen() {
         const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
         fetch(currencyListUrl)
         .then((resp) => resp.json()) // Transform the data into json
@@ -28,42 +28,38 @@ class MainController{
                 });
             });
             
-            this.getCurrenciesForDisplay(currenciesArray);
+            this.displayCurrencyDropdown(currenciesArray);
                 
         });
     }
 
-    getCurrenciesForDisplay(currenciesArray) {
-        return currenciesArray.map(function(currency){
-            this.displayCurrencyDropdown();
-        })
-    }
-
-    displayCurrencyDropdown(){
+    displayCurrencyDropdown(currenciesArray){
         const select1 = document.getElementById("fromCurrency");
         const select2 = document.getElementById("toCurrency");
+        return currenciesArray.map(function(currency){
 
-        let options1 = document.createElement("option");
-        options1.setAttribute("value", `${currency.id}`);
-        options1.innerHTML = `${currency.currencyName} - ${currency.id}`;
+            let options1 = document.createElement("option");
+            options1.setAttribute("value", `${currency.id}`);
+            options1.innerHTML = `${currency.currencyName} - ${currency.id}`;
 
-        let options2 = document.createElement("option");
-        options2.setAttribute("value", `${currency.id}`);
-        options2.innerHTML = `${currency.currencyName} - ${currency.id}`;
+            let options2 = document.createElement("option");
+            options2.setAttribute("value", `${currency.id}`);
+            options2.innerHTML = `${currency.currencyName} - ${currency.id}`;
 
-        select1.appendChild(options1);
-        select2.appendChild(options2);
+            select1.appendChild(options1);
+            select2.appendChild(options2);
                 
+        });
     }
 
     showCachedCurrencies(){
         let MainController = this;
 
-        return this.dbPromise.then(function(db) {
+        return this._dbPromise.then(function(db) {
             // if we're already showing posts, eg shift-refresh
             // or the very first load, there's no point fetching
             // posts from IDB
-            if (!db || MainController.displayCurrencyDropdown()) return;
+            if (!db || (document.getElementById("fromCurrency").value == 0 && document.getElementById("toCurrency") == 0)) return;
 
             const index = db.transaction('currency-list')
             .objectStore('currency-list').index('currencyName');
