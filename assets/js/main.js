@@ -7,7 +7,7 @@ class MainController{
     init(select1, select2){
         this.select1 = select1;
         this.select2 = select2;
-        this.dbPromise = openDatabase();
+        
 
         console.log(this.dbPromise);
         
@@ -15,6 +15,7 @@ class MainController{
         fetch(currencyListUrl)
         .then((resp) => resp.json()) // Transform the data into json
         .then(function(data){
+            this.dbPromise = openDatabase();
             let currencies = data.results;
             this.dbPromise.then(function(db){
                 
