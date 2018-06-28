@@ -1,14 +1,11 @@
 class MainController{
     constructor(){ 
         this.dbPromise = openDatabase();
+        this.init();
         this.registerServiceWorker();
     }
 
-    init(select1, select2) {
-        this.select1 = select1;
-        this.select2 = select2;
-        
-        
+    init() {
         const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
         fetch(currencyListUrl)
         .then((resp) => resp.json()) // Transform the data into json
@@ -29,23 +26,28 @@ class MainController{
                 });
             });
             
-            
-            return currenciesArray.map(function(currency){
-
-                let options1 = document.createElement("option");
-                options1.setAttribute("value", `${currency.id}`);
-                options1.innerHTML = `${currency.currencyName} - ${currency.id}`;
-
-                let options2 = document.createElement("option");
-                options2.setAttribute("value", `${currency.id}`);
-                options2.innerHTML = `${currency.currencyName} - ${currency.id}`;
-
-                select1.appendChild(options1);
-                select2.appendChild(options2);
-                    
-            });
+            this.displayCurrencyDropdown(currenciesArray);
                 
-            });
+        });
+    }
+
+    displayCurrencyDropdown(currenciesArray){
+        const select1 = document.getElementById("fromCurrency");
+        const select2 = document.getElementById("toCurrency");
+        return currenciesArray.map(function(currency){
+
+            let options1 = document.createElement("option");
+            options1.setAttribute("value", `${currency.id}`);
+            options1.innerHTML = `${currency.currencyName} - ${currency.id}`;
+
+            let options2 = document.createElement("option");
+            options2.setAttribute("value", `${currency.id}`);
+            options2.innerHTML = `${currency.currencyName} - ${currency.id}`;
+
+            select1.appendChild(options1);
+            select2.appendChild(options2);
+                
+        });
     }
 
     registerServiceWorker(){
@@ -75,12 +77,9 @@ function openDatabase(){
     });
 }
 
-let myCurrencyConverter = new MainController();
+
 
 
 window.addEventListener("load", (e) => {
-    const select1 = document.getElementById("fromCurrency");
-    const select2 = document.getElementById("toCurrency");
-    myCurrencyConverter.init(select1, select2);
-    // myCurrencyConverter.registerServiceWorker();
+    let myCurrencyConverter = new MainController();
 })
