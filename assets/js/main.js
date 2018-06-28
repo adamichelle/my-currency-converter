@@ -100,11 +100,11 @@ class MainController{
         })
     }
 
-    convertCurrency(amount, currencyFrom, currencyTo){
+    get convertedAmount(amount, currencyFrom, currencyTo){
         this.amount = amount;
         this.currencyFrom = currencyFrom;
         this.currencyTo = currencyTo;
-        let query = `${currencyFrom}_${currencyTo}`;
+        let query = `${this.currencyFrom}_${this.currencyTo}`;
         let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
         console.log(url);
         fetch(url).then((response) => response.json())
@@ -117,7 +117,7 @@ class MainController{
                 result = resultObj[key];               
             }
              console.log(result);
-            newAmount = amount * result;
+            newAmount = this.amount * result;
             convertedAmount = newAmount.toFixed(2);
             document.getElementById("toAmount").value = convertedAmount;
         })
@@ -147,5 +147,5 @@ window.addEventListener("load", (e) => {
     let amount = document.getElementById("fromAmount").value,
     currencyFrom = document.getElementById("fromCurrency").value,
     currencyTo = document.getElementById("toCurrency").value;
-    document.getElementById("convert").addEventListener("click", myCurrencyConverter.convertCurrency(amount, currencyFrom, currencyTo))
+    document.getElementById("convert").addEventListener("click", myCurrencyConverter.convertCurrency(amount, currencyFrom, currencyTo));
 });
