@@ -110,7 +110,8 @@ class MainController{
         console.log(url);
         return fetch(url).then((response) => response.json())
         .then((data) => {
-            let rates = data.results;
+            // let rates = data.results;
+            let rates = data;
             let ratesArray = Object.values(rates);
             console.log(ratesArray);
             /* let result;
