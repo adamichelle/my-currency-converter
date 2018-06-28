@@ -18,7 +18,7 @@ class MainController{
 
     onSocketOpen() {
         const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
-        fetch(currencyListUrl)
+        return fetch(currencyListUrl)
         .then((resp) => resp.json()) // Transform the data into json
         .then((data) => {
             let currencies = data.results;
@@ -37,8 +37,7 @@ class MainController{
                 });
             });
             
-            return this.displayCurrencyDropdown(currenciesArray);
-                
+            this.displayCurrencyDropdown(currenciesArray);       
         });
     }
 
