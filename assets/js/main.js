@@ -14,12 +14,13 @@ class MainController{
         .then((resp) => resp.json()) // Transform the data into json
         .then((data) => {
             let currencies = data.results;
+            console.log(currencies);
             this.dbPromise.then(function(db){
                 
                 if(!db) return;
 
-                let tx = db.transaction('currencies', 'readwrite');
-                let store = tx.objectStore('currencies');
+                let tx = db.transaction('currency-list', 'readwrite');
+                let store = tx.objectStore('currency-list');
                 currencies.forEach(function(currency) {
                   store.put(currency);
                 });
@@ -66,7 +67,7 @@ function openDatabase(){
     }
     
     return idb.open('currency-converter', 1, function(upgradeDb) {
-        var store = upgradeDb.createObjectStore('currencies', {
+        var store = upgradeDb.createObjectStore('currency-list', {
         keyPath: 'id'
         });
         store.createIndex('by-currencyName', 'currencyName');
