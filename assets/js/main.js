@@ -113,6 +113,7 @@ class MainController{
             let rates = data.results;       
             let ratesArray = Object.values(rates);
 
+            console.log(ratesArray);
             this.dbPromise.then(function(db){
                 if(!db) return;
 
