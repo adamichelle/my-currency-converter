@@ -62,7 +62,7 @@ class MainController{
             // if we're already showing posts, eg shift-refresh
             // or the very first load, there's no point fetching
             // posts from IDB
-            if (!db || MainController) return;
+            if (!db || MainController()) return;
 
             const index = db.transaction('currency-list')
             .objectStore('currency-list').index('currencyName');
