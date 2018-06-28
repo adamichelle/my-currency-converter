@@ -56,21 +56,21 @@ class MainController{
             console.log("Not registered");
         })
     }
+}
 
-    openDatabase(){
-        // If the browser doesn't support service worker,
-        // then no need to have a database
-        if (!navigator.serviceWorker) {
-            return Promise.resolve();
-        }
-        
-        return idb.open('currency-converter', 1, function(upgradeDb) {
-            var store = upgradeDb.createObjectStore('currencies', {
-            keyPath: 'id'
-            });
-            store.createIndex('by-currencyName', 'currencyName');
-        });
+function openDatabase(){
+    // If the browser doesn't support service worker,
+    // then no need to have a database
+    if (!navigator.serviceWorker) {
+        return Promise.resolve();
     }
+    
+    return idb.open('currency-converter', 1, function(upgradeDb) {
+        var store = upgradeDb.createObjectStore('currencies', {
+        keyPath: 'id'
+        });
+        store.createIndex('by-currencyName', 'currencyName');
+    });
 }
 
 let myCurrencyConverter = new MainController();
@@ -80,5 +80,5 @@ window.addEventListener("load", (e) => {
     const select1 = document.getElementById("fromCurrency");
     const select2 = document.getElementById("toCurrency");
     myCurrencyConverter.init(select1, select2);
-    MainController.registerServiceWorker();
+    myCurrencyConverter.registerServiceWorker();
 })
