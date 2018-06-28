@@ -17,7 +17,7 @@ class MainController{
         .then((data) => {
             let currencies = data.results;
             let currenciesArray = Object.values(currencies);
-            console.log(currenciesArray);
+
             currenciesArray.sort((a, b) => a.currencyName.localeCompare(b.currencyName)) //sort the surrencies in alphabetical order by currency Name
 
             this.dbPromise.then(function(db){
@@ -100,7 +100,7 @@ class MainController{
         })
     }
 
-    convertCurency(amount, currencyFrom, currencyTo){
+    convertCurrency(amount, currencyFrom, currencyTo){
         this.amount = amount;
         this.currencyFrom = currencyFrom;
         this.currencyTo = currencyTo;
