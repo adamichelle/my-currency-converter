@@ -111,7 +111,7 @@ class MainController{
         return fetch(url).then((response) => response.json())
         .then((data) => {
             let rates = data.results;
-            let ratesArray = object.values(rates);
+            let ratesArray = Object.values(rates);
             console.log(ratesArray);
             /* let result;
             let newAmount, convertedAmount;
