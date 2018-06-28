@@ -1,21 +1,18 @@
 class MainController{
     constructor(){ 
-        // this.dbPromise = openDatabase();
+        this.dbPromise = openDatabase();
         this.registerServiceWorker();
     }
 
-    init(select1, select2){
+    init(select1, select2) {
         this.select1 = select1;
         this.select2 = select2;
         
-
-        console.log(this.dbPromise);
         
         const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
         fetch(currencyListUrl)
         .then((resp) => resp.json()) // Transform the data into json
-        .then(function(data){
-            this.dbPromise = openDatabase();
+        .then((data) => {
             let currencies = data.results;
             this.dbPromise.then(function(db){
                 
