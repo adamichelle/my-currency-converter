@@ -2,8 +2,8 @@ class MainController{
     constructor(){ 
         this.dbPromise = openDatabase();
         this.registerServiceWorker();
-        this.showCachedCurrencies().then(function() {
-            onSocketOpen();
+        this.showCachedCurrencies().then(() => {
+            this.onSocketOpen();
         });
     }
 
