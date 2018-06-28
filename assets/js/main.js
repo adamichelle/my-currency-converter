@@ -76,6 +76,22 @@ class MainController{
                 // indexController._postsView.addPosts(messages.reverse());
                 // MainController.displayCurrencyDropdown(currencies)
                 console.log(currencies);
+                const select1 = document.getElementById("fromCurrency");
+                const select2 = document.getElementById("toCurrency");
+                return currencies.map(function(currency){
+
+                    let options1 = document.createElement("option");
+                    options1.setAttribute("value", `${currency.id}`);
+                    options1.innerHTML = `${currency.currencyName} - ${currency.id}`;
+
+                    let options2 = document.createElement("option");
+                    options2.setAttribute("value", `${currency.id}`);
+                    options2.innerHTML = `${currency.currencyName} - ${currency.id}`;
+
+                    select1.appendChild(options1);
+                    select2.appendChild(options2);
+                        
+                });
             });
         });
         
