@@ -59,14 +59,14 @@ class MainController{
             // if we're already showing posts, eg shift-refresh
             // or the very first load, there's no point fetching
             // posts from IDB
-            if (!db || MainController.displayCurrencyDropdown(currenciesArray)) return;
+            if (!db || MainController.displayCurrencyDropdown()) return;
 
             const index = db.transaction('currency-list')
             .objectStore('currency-list').index('currencyName');
 
             return index.getAll().then(function(currencies) {
             // indexController._postsView.addPosts(messages.reverse());
-                MainController.displayCurrencyDropdown(currenciesArray)
+                MainController.displayCurrencyDropdown(currencies)
             });
         });
         
