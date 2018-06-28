@@ -128,7 +128,7 @@ class MainController{
             let newAmount, convertedAmount, rateConversionName;
             
             ratesArray.map( function (rate) {
-                result = rate[0][val];
+                result = rate[0]['val'];
                 rateConversionName = rate.id;
             })
         
