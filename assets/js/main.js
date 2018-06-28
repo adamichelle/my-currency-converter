@@ -55,7 +55,7 @@ class MainController{
     showCachedCurrencies(){
         let MainController = this;
 
-        return this._dbPromise.then(function(db) {
+        return this.dbPromise.then(function(db) {
             // if we're already showing posts, eg shift-refresh
             // or the very first load, there's no point fetching
             // posts from IDB
