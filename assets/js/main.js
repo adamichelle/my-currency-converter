@@ -1,12 +1,15 @@
 class MainController{
-    constructor(){
-        // this.init();
+    constructor(){ 
         this.dbPromise = openDatabase();
         this.registerServiceWorker();
-        
     }
 
-    static init(){     
+    static init(select1, select2, amountInput, amountOutput){
+        const select1 = document.getElementById("fromCurrency");
+        const select2 = document.getElementById("toCurrency");
+        const amountInput = document.getElementById("fromAmount");
+        const amountOutput = document.getElementById("toAmount");
+        
             const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
             fetch(currencyListUrl)
             .then((resp) => resp.json()) // Transform the data into json
