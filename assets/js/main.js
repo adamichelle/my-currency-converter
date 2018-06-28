@@ -134,7 +134,7 @@ class MainController{
                 rateConversionName = rate.id;
             }) */
         
-            console.log(result);
+            // console.log(result);
             /* newAmount = this.amount * result;
             convertedAmount = newAmount.toFixed(2);
             document.getElementById("toAmount").value = convertedAmount; */
