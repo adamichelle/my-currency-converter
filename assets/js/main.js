@@ -7,6 +7,7 @@ class MainController{
     static init(select1, select2){
         this.select1 = select1;
         this.select2 = select2;
+        this.dbPromise = openDatabase();
         
         const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
         fetch(currencyListUrl)
