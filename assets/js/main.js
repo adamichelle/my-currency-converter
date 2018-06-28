@@ -13,6 +13,17 @@ class MainController{
         .then((resp) => resp.json()) // Transform the data into json
         .then(function(data){
             let currencies = data.results;
+            this.dbPromise.then(function(db){
+                
+                if(!db) return;
+
+                let tx = db.transaction('currencies', 'readwrite');
+                let store = tx.objectStore('currencies');
+                currencies.forEach(function(currency) {
+                  store.put(currency);
+                });
+            });
+            
             let currenciesArray = Object.values(currencies);
             currenciesArray.sort((a, b) => a.currencyName.localeCompare(b.currencyName)) //sort the surrencies in alphabetical order by currency Name
          
@@ -44,6 +55,21 @@ class MainController{
             console.log("Not registered");
         })
     }
+
+    static openDatabase(){
+        // If the browser doesn't support service worker,
+        // then no need to have a database
+        if (!navigator.serviceWorker) {
+            return Promise.resolve();
+        }
+        
+        return idb.open('currency-converter', 1, function(upgradeDb) {
+            var store = upgradeDb.createObjectStore('currencies', {
+            keyPath: 'id'
+            });
+            store.createIndex('by-currencyName', 'currencyName');
+        });
+        }
 }
 
 window.addEventListener("load", (e) => {
