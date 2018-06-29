@@ -131,8 +131,11 @@ class MainController{
             let resultObj = ratesArray.filter(rate => rate.id == query);
             console.log(resultObj);
 
-            result = resultObj.val;
-            console.log(result);
+            for (let [key, value] of Object.entries(resultObj)) {
+                console.log(key, value);
+            }
+            /* result = resultObj.val;
+            console.log(result); */
             /* newAmount = this.amount * result;
             convertedAmount = newAmount.toFixed(2);
             document.getElementById("toAmount").value = convertedAmount; */
