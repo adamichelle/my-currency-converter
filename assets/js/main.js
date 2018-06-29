@@ -138,7 +138,7 @@ class MainController{
         })
         .catch( () => {
             console.log("Error!");
-            this.dbPromise.then( function (db){
+            this.dbPromise.then( (db) => {
                 if(!db) return;
 
                 let tx = db.transaction('rate-list');
@@ -146,7 +146,7 @@ class MainController{
                 let rateQueryIndex = rateListStore.index('by-rateQuery');
                 return rateQueryIndex.getAll(query);
 
-            }).then( function(rateDetailsArray){
+            }).then( (rateDetailsArray) => {
                 console.log(rateDetailsArray);
                 let offlineNewAmount, offlineConvertedAmount, offlineConversionRate;
 
