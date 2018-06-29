@@ -145,8 +145,19 @@ class MainController{
                 let rateListStore = tx.objectStore('rate-list');
                 let rateQueryIndex = rateListStore.index('by-rateQuery');
                 return rateQueryIndex.getAll(query);
-            }).then( function(rates){
-                console.log(rates);
+                
+            }).then( function(rateDetailsArray){
+                console.log(rateDetailsArray);
+                let offlineNewAmount, offlineConvertedAmount, conversionRate;
+
+                let offlineResultEntry = rateDetailsArray.find(offlineRate.id === query);
+                if(offlineResultEntry){
+                    offlineConversionRate = offlineResultEntry.val;
+                    offlineNewAmount = this.amount * offlineConversionRate;
+                    offlineConvertedAmount = offlineNewAmount.toFixed(2);
+                    document.getElementById("toAmount").value = offlineConvertedAmount;
+
+                }
             })
         });
     }
