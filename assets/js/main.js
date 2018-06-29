@@ -114,7 +114,7 @@ class MainController{
             let rates = data.results;       
             let ratesArray = Object.values(rates);
 
-            console.log(ratesArray);
+            // console.log(ratesArray);
             this.dbPromise.then(function(db){
                 if(!db) return;
 
@@ -130,10 +130,11 @@ class MainController{
             
             let resultObj = ratesArray.filter(rate => rate.id == query);
             console.log(resultObj);
-
-            for (let [key, value] of Object.entries(resultObj)) {
-                console.log(key, value);
+            if (resultObj) {
+                result = resultObj.val;
+                console.log(result);
             }
+
             /* result = resultObj.val;
             console.log(result); */
             /* newAmount = this.amount * result;
