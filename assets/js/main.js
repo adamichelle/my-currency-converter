@@ -131,7 +131,7 @@ class MainController{
             let resultEntry = ratesArray.find(rate => rate.id === query);
             if (resultEntry) {
                 conversionRate = resultEntry.val;
-                console(conversionRate);
+                console.log(conversionRate);
             }
 
             /* let resultObj = ratesArray.filter(rate => rate.id == query);
