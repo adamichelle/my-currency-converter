@@ -128,7 +128,7 @@ class MainController{
             let result;
             let newAmount, convertedAmount, rateConversionName;
             
-            let resultEntry = array.find(rate => rate.id === query);
+            let resultEntry = ratesArray.find(rate => rate.id === query);
             if (resultEntry) {
                 conversionRate = resultEntry.val;
                 console(conversionRate);
