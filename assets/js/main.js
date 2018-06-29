@@ -106,36 +106,41 @@ class MainController{
         this.currencyFrom = currencyFrom;
         this.currencyTo = currencyTo;
         let query = `${this.currencyFrom}_${this.currencyTo}`;
-        let revertedQuery = `${this.currencyTo}_${this.currencyFrom}`
+        let revertedQuery = `${this.currencyTo}_${this.currencyFrom}`;
         let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query},${revertedQuery}`;
         // console.log(url);
-        return fetch(url).then((response) => response.json())
-        .then((data) => {
-            let rates = data.results;       
-            let ratesArray = Object.values(rates);
+        if(fetch(url)){
+            return fetch(url).then((response) => response.json())
+            .then((data) => {
+                let rates = data.results;       
+                let ratesArray = Object.values(rates);
 
-            // console.log(ratesArray);
-            this.dbPromise.then(function(db){
-                if(!db) return;
+                // console.log(ratesArray);
+                this.dbPromise.then(function(db){
+                    if(!db) return;
 
-                let tx = db.transaction('rate-list', 'readwrite');
-                let rateListStore = tx.objectStore('rate-list');
-                ratesArray.forEach(function(rate) {
-                  rateListStore.put(rate);
+                    let tx = db.transaction('rate-list', 'readwrite');
+                    let rateListStore = tx.objectStore('rate-list');
+                    ratesArray.forEach(function(rate) {
+                    rateListStore.put(rate);
+                    });
                 });
-            });
 
-            let newAmount, convertedAmount, rateConversionName, conversionRate;
-            
-            let resultEntry = ratesArray.find(rate => rate.id === query);
-            if (resultEntry) {
-                conversionRate = resultEntry.val;
-                // console.log(conversionRate);
-                newAmount = this.amount * conversionRate;
-                convertedAmount = newAmount.toFixed(2);
-                document.getElementById("toAmount").value = convertedAmount;
-            }
-        })
+                let newAmount, convertedAmount, rateConversionName, conversionRate;
+                
+                let resultEntry = ratesArray.find(rate => rate.id === query);
+                if (resultEntry) {
+                    conversionRate = resultEntry.val;
+                    // console.log(conversionRate);
+                    newAmount = this.amount * conversionRate;
+                    convertedAmount = newAmount.toFixed(2);
+                    document.getElementById("toAmount").value = convertedAmount;
+                }
+            });
+        }
+        else{
+            console.log("OOPS! Something went wrong!");
+        }
     }
 }
 
