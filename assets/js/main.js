@@ -110,7 +110,7 @@ class MainController{
         let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query},${revertedQuery}`;
         // console.log(url);
         if(fetch(url)){
-            return fetch(url).then((response) => response.json())
+             fetch(url).then((response) => response.json())
             .then((data) => {
                 let rates = data.results;       
                 let ratesArray = Object.values(rates);
