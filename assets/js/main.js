@@ -159,6 +159,7 @@ class MainController{
                 }
                 else{
                     let errorMsg = document.getElementById("error-msg");
+                    errorMsg.style.display = 'block';
                     errorMsg.innerHTML = "Ooops! Sorry. You can't perform that conversion offline yet! Try it out when you're online.";
                 }
             })

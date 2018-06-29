@@ -18,3 +18,6 @@ body, input, button{
     background-color: #edf0f1;
     padding: 50px 5% 50px 5%;
 }
+#error-msg{
+    display: none;
+}
