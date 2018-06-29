@@ -3,8 +3,9 @@ class MainController{
         this.dbPromise = openDatabase();
         this.registerServiceWorker();
         this.onSocketOpen()
-        .then( () => {console.log("Retriving currencies from api!")})
+        .then( () => {console.log("Retriving currencies from api!"); return;})
         .catch( () => {
+            console.log("Retriving currencies from IndexDB!");
             this.showCachedCurrencies();
         });
 
@@ -128,13 +129,9 @@ class MainController{
             let newAmount, convertedAmount, rateConversionName;
             
             let res = ratesArray.filter(rate => rate.id == query);
-            console.log(res);
-           /*  ratesArray.map( function (rate) {
-                result = rate[0]['val'];
-                rateConversionName = rate.id;
-            }) */
-        
-            // console.log(result);
+            result = rate.id;
+           
+            console.log(result);
             /* newAmount = this.amount * result;
             convertedAmount = newAmount.toFixed(2);
             document.getElementById("toAmount").value = convertedAmount; */
