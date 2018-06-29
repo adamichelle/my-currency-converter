@@ -108,7 +108,7 @@ class MainController{
         let query = `${this.currencyFrom}_${this.currencyTo}`;
         let revertedQuery = `${this.currencyTo}_${this.currencyFrom}`
         let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query},${revertedQuery}`;
-        console.log(url);
+        // console.log(url);
         return fetch(url).then((response) => response.json())
         .then((data) => {
             let rates = data.results;       
@@ -125,27 +125,16 @@ class MainController{
                 });
             });
 
-            let result;
             let newAmount, convertedAmount, rateConversionName, conversionRate;
             
             let resultEntry = ratesArray.find(rate => rate.id === query);
             if (resultEntry) {
                 conversionRate = resultEntry.val;
-                console.log(conversionRate);
+                // console.log(conversionRate);
+                newAmount = this.amount * conversionRate;
+                convertedAmount = newAmount.toFixed(2);
+                document.getElementById("toAmount").value = convertedAmount;
             }
-
-            /* let resultObj = ratesArray.filter(rate => rate.id == query);
-            console.log(resultObj);
-            if (resultObj) {
-                result = resultObj.val;
-                console.log(result);
-            }
- */
-            /* result = resultObj.val;
-            console.log(result); */
-            /* newAmount = this.amount * result;
-            convertedAmount = newAmount.toFixed(2);
-            document.getElementById("toAmount").value = convertedAmount; */
         })
     }
 }
