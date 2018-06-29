@@ -128,13 +128,19 @@ class MainController{
             let result;
             let newAmount, convertedAmount, rateConversionName;
             
-            let resultObj = ratesArray.filter(rate => rate.id == query);
+            let resultEntry = array.find(e => e.Key === "id");
+            if (resultEntry) {
+                conversionRate = resultEntry.val;
+                console(conversionRate);
+            }
+
+            /* let resultObj = ratesArray.filter(rate => rate.id == query);
             console.log(resultObj);
             if (resultObj) {
                 result = resultObj.val;
                 console.log(result);
             }
-
+ */
             /* result = resultObj.val;
             console.log(result); */
             /* newAmount = this.amount * result;
