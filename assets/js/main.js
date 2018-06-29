@@ -145,10 +145,10 @@ class MainController{
                 let rateListStore = tx.objectStore('rate-list');
                 let rateQueryIndex = rateListStore.index('by-rateQuery');
                 return rateQueryIndex.getAll(query);
-                
+
             }).then( function(rateDetailsArray){
                 console.log(rateDetailsArray);
-                let offlineNewAmount, offlineConvertedAmount, conversionRate;
+                let offlineNewAmount, offlineConvertedAmount, offlineConversionRate;
 
                 let offlineResultEntry = rateDetailsArray.find(offlineRate.id === query);
                 if(offlineResultEntry){
