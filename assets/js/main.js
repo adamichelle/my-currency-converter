@@ -150,7 +150,7 @@ class MainController{
                 console.log(rateDetailsArray);
                 let offlineNewAmount, offlineConvertedAmount, offlineConversionRate;
 
-                let offlineResultEntry = rateDetailsArray.find(offlineRate.id === query);
+                let offlineResultEntry = rateDetailsArray.find((offlineRate) => offlineRate.id === query);
                 if(offlineResultEntry){
                     offlineConversionRate = offlineResultEntry.val;
                     offlineNewAmount = this.amount * offlineConversionRate;
