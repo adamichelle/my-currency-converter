@@ -128,9 +128,10 @@ class MainController{
             let result;
             let newAmount, convertedAmount, rateConversionName;
             
-            let res = ratesArray.filter(rate => rate.id == query);
-            result = rate.id;
-           
+            let resultObj = ratesArray.filter(rate => rate.id == query);
+            console.log(resultObj);
+
+            result = resultObj.val;
             console.log(result);
             /* newAmount = this.amount * result;
             convertedAmount = newAmount.toFixed(2);
