@@ -127,7 +127,7 @@ class MainController{
             let result;
             let newAmount, convertedAmount, rateConversionName;
             
-            let res = students.filter(student => student.subject == query);
+            let res = ratesArray.filter(rate => rate.id == query);
             console.log(res);
            /*  ratesArray.map( function (rate) {
                 result = rate[0]['val'];
