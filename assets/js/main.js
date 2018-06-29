@@ -137,7 +137,6 @@ class MainController{
             }
         })
         .catch( () => {
-            console.log("Error!");
             this.dbPromise.then( (db) => {
                 if(!db) return;
 
@@ -157,6 +156,10 @@ class MainController{
                     offlineConvertedAmount = offlineNewAmount.toFixed(2);
                     document.getElementById("toAmount").value = offlineConvertedAmount;
 
+                }
+                else{
+                    let errorMsg = document.getElementById("error-msg");
+                    errorMsg.innerHTML = "Ooops! Sorry. You can't perform that conversion offline yet! Try it out when you're online.";
                 }
             })
         });
