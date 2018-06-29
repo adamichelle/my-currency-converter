@@ -126,7 +126,7 @@ class MainController{
             });
 
             let result;
-            let newAmount, convertedAmount, rateConversionName;
+            let newAmount, convertedAmount, rateConversionName, conversionRate;
             
             let resultEntry = ratesArray.find(rate => rate.id === query);
             if (resultEntry) {
