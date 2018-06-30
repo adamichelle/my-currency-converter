@@ -12,14 +12,15 @@ class MainController{
     }
 
     onSocketOpen() {
-        const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
+        const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/countries";
         return fetch(currencyListUrl)
         .then((resp) => resp.json()) // Transform the data into json
         .then((data) => {
             let currencies = data.results;
             let currenciesArray = Object.values(currencies);
 
-            currenciesArray.sort((a, b) => a.currencyName.localeCompare(b.currencyName)) //sort the surrencies in alphabetical order by currency Name
+            console.log(currenciesArray);
+            /* currenciesArray.sort((a, b) => a.currencyName.localeCompare(b.currencyName)) //sort the surrencies in alphabetical order by currency Name
 
             this.dbPromise.then(function(db){
                 
@@ -32,7 +33,7 @@ class MainController{
                 });
             });
             
-            this.displayCurrencyDropdown(currenciesArray);       
+            this.displayCurrencyDropdown(currenciesArray);        */
         });
     }
 
@@ -146,7 +147,7 @@ class MainController{
                 return rateQueryIndex.getAll(query);
 
             }).then( (rateDetailsArray) => {
-                console.log(rateDetailsArray);
+                // console.log(rateDetailsArray);
                 let offlineNewAmount, offlineConvertedAmount, offlineConversionRate;
 
                 let offlineResultEntry = rateDetailsArray.find((offlineRate) => offlineRate.id === query);
