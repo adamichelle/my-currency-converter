@@ -17,10 +17,13 @@ class MainController{
         .then((resp) => resp.json()) // Transform the data into json
         .then((data) => {
             let currencies = data.results;
-            let currenciesArray = Object.values(currencies);
+            console.log(currencies);
+            /* let currenciesArray = Object.values(currencies);
 
             console.log(currenciesArray);
             currenciesArray.sort((a, b) => a.currencyName.localeCompare(b.currencyName)) //sort the surrencies in alphabetical order by currency Name
+             */
+    
             /*
             this.dbPromise.then(function(db){
                 
