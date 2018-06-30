@@ -46,14 +46,14 @@ class MainController{
         const select1 = document.getElementById("fromCurrency");
         const select2 = document.getElementById("toCurrency");
         return currenciesArray.map(function(currency){
-
+            
             let options1 = document.createElement("option");
-            options1.setAttribute("value", `${currency.id}`);
-            options1.innerHTML = `${currency.currencyName} - ${currency.id}`;
+            options1.setAttribute("value", `${currency.currrencyId}`);
+            options1.innerHTML = `${currency.currencyName} - ${currency.currrencyId}`;
 
             let options2 = document.createElement("option");
-            options2.setAttribute("value", `${currency.id}`);
-            options2.innerHTML = `${currency.currencyName} - ${currency.id}`;
+            options2.setAttribute("value", `${currency.currrencyId}`);
+            options2.innerHTML = `${currency.currencyName} - ${currency.currrencyId}`;
 
             select1.appendChild(options1);
             select2.appendChild(options2);
