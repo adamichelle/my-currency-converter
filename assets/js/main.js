@@ -23,8 +23,8 @@ class MainController{
             
             console.log(currenciesArray);
 
-            for(let index of currenciesArray){
-                console.log(currenciesArray[index]);
+            for(let currencyObj of currenciesArray){
+                console.log(currencyObj);
             }
     
             /*
