@@ -25,7 +25,7 @@ class MainController{
                 if(a.currencyName === b.currencyName){
                     let similarCurrenciesArray = [];
                 similarCurrenciesArray.push(a.currencyName);
-                console.log(similarCurrenciesArray);
+                console.log(similarCurrenciesArray); 
                 }
                 
                 /* if(a.currencyName === b.currencyName){
