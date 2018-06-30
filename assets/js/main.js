@@ -24,7 +24,7 @@ class MainController{
             currenciesArray.sort((a, b) => {a.currencyName.localeCompare(b.currencyName);
                 
                 let similarCurrenciesArray = [];
-                similarCurrenciesArray.push;
+                similarCurrenciesArray.push(a.currencyName);
                 console.log(similarCurrenciesArray);
                 /* if(a.currencyName === b.currencyName){
                     currenciesArray.forEach( function(index, currency){
