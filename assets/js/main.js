@@ -12,22 +12,15 @@ class MainController{
     }
 
     onSocketOpen() {
-        const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/countries";
+        const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
         return fetch(currencyListUrl)
         .then((resp) => resp.json()) // Transform the data into json
         .then((data) => {
             let currencies = data.results;
             let currenciesArray = Object.values(currencies);
-            let obj1;
-            let newCurrenciesArray;
 
-            currenciesArray.sort((a, b) => {a.name.localeCompare(b.name);}); //sort the surrencies in alphabetical order by currency Name
-            
-            console.log(currenciesArray);
+            currenciesArray.sort((a, b) => a.currencyName.localeCompare(b.currencyName)) //sort the surrencies in alphabetical order by currency Name
 
-            
-    
-            /*
             this.dbPromise.then(function(db){
                 
                 if(!db) return;
@@ -38,26 +31,23 @@ class MainController{
                   currencyListStore.put(currency);
                 });
             });
-            */
             
-            this.displayCurrencyDropdown(currenciesArray);        
+            this.displayCurrencyDropdown(currenciesArray);       
         });
     }
 
     displayCurrencyDropdown(currenciesArray){
         const select1 = document.getElementById("fromCurrency");
         const select2 = document.getElementById("toCurrency");
-    
         return currenciesArray.map(function(currency){
-            
 
             let options1 = document.createElement("option");
-            options1.setAttribute("value", `${currency.currencyId}`);
-            options1.innerHTML = `${currency.currencyName} - ${currency.currencyId}`;
+            options1.setAttribute("value", `${currency.id}`);
+            options1.innerHTML = `${currency.currencyName} - ${currency.id}`;
 
             let options2 = document.createElement("option");
-            options2.setAttribute("value", `${currency.currencyId}`);
-            options2.innerHTML = `${currency.currencyName} - ${currency.currencyId}`;
+            options2.setAttribute("value", `${currency.id}`);
+            options2.innerHTML = `${currency.currencyName} - ${currency.id}`;
 
             select1.appendChild(options1);
             select2.appendChild(options2);
