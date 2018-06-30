@@ -18,11 +18,19 @@ class MainController{
         .then((data) => {
             let currencies = data.results;
             let currenciesArray = Object.values(currencies);
+            let obj1;
+            let newCurrenciesArray;
 
             currenciesArray.sort((a, b) => {a.currencyName.localeCompare(b.currencyName);
-                if(a.currencyName === b.currencyName){
-                   console.log(a.currencyName);
-                }
+                
+                let similarCurrenciesArray = [];
+                similarCurrenciesArray.push;
+                console.log(similarCurrenciesArray);
+                /* if(a.currencyName === b.currencyName){
+                    currenciesArray.forEach( function(index, currency){
+
+                    })
+                } */
             }); //sort the surrencies in alphabetical order by currency Name
             
             // console.log(currenciesArray);
