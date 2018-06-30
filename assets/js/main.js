@@ -21,7 +21,7 @@ class MainController{
             let obj1;
             let newCurrenciesArray;
 
-            currenciesArray.sort((a, b) => {a.currencyName.localeCompare(b.currencyName);}); //sort the surrencies in alphabetical order by currency Name
+            currenciesArray.sort((a, b) => {a.name.localeCompare(b.name);}); //sort the surrencies in alphabetical order by currency Name
             
             console.log(currenciesArray);
 
