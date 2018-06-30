@@ -23,9 +23,7 @@ class MainController{
             
             console.log(currenciesArray);
 
-            for(let currencyObj of currenciesArray){
-                console.log(currencyObj);
-            }
+            
     
             /*
             this.dbPromise.then(function(db){
@@ -38,8 +36,9 @@ class MainController{
                   currencyListStore.put(currency);
                 });
             });
+            */
             
-            this.displayCurrencyDropdown(currenciesArray);        */
+            this.displayCurrencyDropdown(currenciesArray);        
         });
     }
 
