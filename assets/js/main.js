@@ -20,8 +20,8 @@ class MainController{
             let currenciesArray = Object.values(currencies);
 
             console.log(currenciesArray);
-            /* currenciesArray.sort((a, b) => a.currencyName.localeCompare(b.currencyName)) //sort the surrencies in alphabetical order by currency Name
-
+            currenciesArray.sort((a, b) => a.currencyName.localeCompare(b.currencyName)) //sort the surrencies in alphabetical order by currency Name
+            /*
             this.dbPromise.then(function(db){
                 
                 if(!db) return;
