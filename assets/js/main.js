@@ -21,21 +21,9 @@ class MainController{
             let obj1;
             let newCurrenciesArray;
 
-            currenciesArray.sort((a, b) => {a.currencyName.localeCompare(b.currencyName);
-                if(a.currencyName === b.currencyName){
-                    let similarCurrenciesArray = [];
-                similarCurrenciesArray.push(a.currencyName);
-                console.log(similarCurrenciesArray); 
-                }
-                
-                /* if(a.currencyName === b.currencyName){
-                    currenciesArray.forEach( function(index, currency){
-
-                    })
-                } */
-            }); //sort the surrencies in alphabetical order by currency Name
+            currenciesArray.sort((a, b) => {a.currencyName.localeCompare(b.currencyName);}); //sort the surrencies in alphabetical order by currency Name
             
-            // console.log(currenciesArray);
+            console.log(currenciesArray);
 
             
     
@@ -59,8 +47,10 @@ class MainController{
     displayCurrencyDropdown(currenciesArray){
         const select1 = document.getElementById("fromCurrency");
         const select2 = document.getElementById("toCurrency");
+    
         return currenciesArray.map(function(currency){
             
+
             let options1 = document.createElement("option");
             options1.setAttribute("value", `${currency.currencyId}`);
             options1.innerHTML = `${currency.currencyName} - ${currency.currencyId}`;
