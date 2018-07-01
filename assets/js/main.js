@@ -2,16 +2,24 @@ class MainController{
     constructor(){ 
         this.dbPromise = openDatabase();
         this.registerServiceWorker();
-        this.onSocketOpen()
+        if(navigator.onLine){
+            
+            this.getCurrencies();
+        }
+        else{
+            document.getElementById("status").innerHTML = "You're Offline."
+            this.showCachedCurrencies();
+        }
+        /* this.getCurrencies()
         .then( () => {console.log("Retriving currencies from api!"); return;})
         .catch( () => {
             console.log("Retriving currencies from IndexDB!");
             this.showCachedCurrencies();
-        });
+        }); */
 
     }
 
-    onSocketOpen() {
+    getCurrencies() {
         const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
         return fetch(currencyListUrl)
         .then((resp) => resp.json()) // Transform the data into json
@@ -200,4 +208,9 @@ window.addEventListener("load", (e) => {
         myCurrencyConverter.convertCurrency(amount, currencyFrom, currencyTo);
 
     });
+
+    document.getElementById("refresh").addEventListener("click", () => {
+        document.getElementById("fromAmount").value = "";
+        document.getElementById("toAmount").value = "";
+    })
 });

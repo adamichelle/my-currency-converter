@@ -1,23 +1,18 @@
 @charset "UTF-8";
-
-body, input, button{
-    font-family: 'Roboto', sans-serif;
-}
-.header{
-    height: 80px;
-    padding: 15px;
-    z-index: 5;
-    background-color: #c6273a;
-    box-shadow: 0px 2px 4px rgba(44, 62, 80, 0.5);
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-.app-body{
-    background-color: #edf0f1;
-    padding: 50px 5% 50px 5%;
-}
-#error-msg{
-    display: none;
-}
+body, input, button{ font-family: 'Roboto', sans-serif; }
+#app-nav{ background-color: #ad2749; }
+#app-nav a{ color: #ffffff; font-weight: bold; }
+#app-container{ margin-top: 5%; margin-bottom: 5%; }
+#app-body{ padding: 2% 3% 2% 3%; box-shadow: 3px 3px #cccccc;}
+#app-row { margin-top: 70px; }
+#app-title{ color: #ad2749; font-weight: bold; margin-bottom: 20px; }
+#error-msg, #status{ display: none; }
+#status{ margin-top: 0%; background: #edf0f1; color: #ad2749; padding: 2px; }
+#refresh{ padding: 0.80rem auto;}
+#refresh:hover{ color: #ad2749; border: 1px solid #cccccc; }
+#convert{ background-color: #ad2749; color: #ffffff; font-weight: bold; }
+#convert:hover{color: #ad2749; background-color: #ffffff; border: 1px solid #ad2749;}
+#app-footer { color: #ad2749; margin-bottom: 20px; margin-top: 30px;}
+#app-footer p{ margin-bottom: 0; font-size: 0.80rem; }
+#app-footer p a{ color: #ad2749; text-decoration: underline; }
+#app-footer p a:hover{ color: #ad2749; font-weight: 600; }
