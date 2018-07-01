@@ -20,6 +20,7 @@ body, input, button{ font-family: 'Roboto', sans-serif; }
 #refresh:hover{ color: #ad2749; border: 1px solid #cccccc; }
 #convert{ background-color: #ad2749; color: #ffffff; font-weight: bold; }
 #convert:hover{color: #ad2749; background-color: #ffffff; border: 1px solid #ad2749;}
+#loader-icon{ display: none; }
 #app-footer { color: #ad2749; margin-bottom: 20px; margin-top: 30px;}
 #app-footer p{ margin-bottom: 0; font-size: 0.80rem; }
 #app-footer p a{ color: #ad2749; text-decoration: underline; }

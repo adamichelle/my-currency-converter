@@ -6,8 +6,6 @@ class MainController{
         .then( () => {console.log("Retriving currencies from api!"); return;})
         .catch( () => {
             console.log("Retriving currencies from IndexDB!");
-            document.getElementById("status").style.display = "none";
-            document.getElementById("status").innerHTML = "You're Offline."
             this.showCachedCurrencies();
         });
 
@@ -136,6 +134,7 @@ class MainController{
                 newAmount = this.amount * conversionRate;
                 convertedAmount = newAmount.toFixed(2);
                 document.getElementById("toAmount").value = convertedAmount;
+                document.getElementById("loader-icon").style.display = "none";
             }
         })
         .catch( () => {
@@ -157,12 +156,13 @@ class MainController{
                     offlineNewAmount = this.amount * offlineConversionRate;
                     offlineConvertedAmount = offlineNewAmount.toFixed(2);
                     document.getElementById("toAmount").value = offlineConvertedAmount;
-
+                    document.getElementById("loader-icon").style.display = "none";
                 }
                 else{
                     let errorMsg = document.getElementById("error-msg");
                     errorMsg.style.display = 'block';
                     errorMsg.innerHTML = "Ooops! Sorry. You can't perform that conversion offline yet! Try it out when you're online.";
+                    document.getElementById("loader-icon").style.display = "none";
                 }
             })
         });
@@ -193,9 +193,15 @@ function openDatabase(){
 
 
 window.addEventListener("load", (e) => {
+    window.addEventListener('offline', () => {
+        document.getElementById("status").style.display = "block";
+        document.getElementById("status").innerHTML = "You're Offline."
+    }, false);
     let myCurrencyConverter = new MainController();
     
+    //convertion event
     document.getElementById("convert").addEventListener("click", () => {
+        document.getElementById("loader-icon").style.display = "inline";
         let amount = document.getElementById("fromAmount").value,
         currencyFrom = document.getElementById("fromCurrency").value,
         currencyTo = document.getElementById("toCurrency").value;
@@ -203,6 +209,7 @@ window.addEventListener("load", (e) => {
 
     });
 
+    //refresh form
     document.getElementById("refresh").addEventListener("click", () => {
         document.getElementById("fromAmount").value = "";
         document.getElementById("toAmount").value = "";
