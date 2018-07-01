@@ -143,6 +143,7 @@ class MyConverter{
             }
         })
         .catch( () => {
+            let errorMsg = document.getElementById("error-msg");
             this.dbPromise.then( (db) => {
                 if(!db) return; //if no db then no need to proceed
 
@@ -154,6 +155,9 @@ class MyConverter{
 
             }).then( (rateDetailsArray) => {
                 // console.log(rateDetailsArray);
+                if(errorMsg.style.display = "block"){
+                    errorMsg.style.display = "none";
+                }
                 let offlineNewAmount, offlineConvertedAmount, offlineConversionRate;
 
                 let offlineResultEntry = rateDetailsArray.find((offlineRate) => offlineRate.id === query);
@@ -165,7 +169,7 @@ class MyConverter{
                     document.getElementById("loader-icon").style.display = "none";
                 }
                 else{
-                    let errorMsg = document.getElementById("error-msg");
+                    // let errorMsg = document.getElementById("error-msg");
                     errorMsg.style.display = 'block';
                     let text = document.createTextNode("Ooops! Sorry. You can't perform that conversion offline yet! Try it out when you're online.");
                     let child = document.getElementById('dismiss-alert');
@@ -219,11 +223,16 @@ window.addEventListener("load", (e) => {
 
     //convertion event
     document.getElementById("convert").addEventListener("click", () => {
+        if(errorMsg.style.display = "block"){
+            errorMsg.style.display = "none";
+        }
         const fromAmountFieldValue = document.getElementById("fromAmount").value;
         // If amount field is empty
         if (fromAmountFieldValue === "" || fromAmountFieldValue === null || isNaN(fromAmountFieldValue) || fromAmountFieldValue < 1) {
             errorMsg.style.display = 'block';
-            errorMsg.innerHTML = "Invalid Amount entered!!";              
+            let text = document.createTextNode("Invalid Amount entered!!");
+            let child = document.getElementById('dismiss-alert');
+            child.parentNode.insertBefore(text, child);          
             return false;
         } 
         document.getElementById("loader-icon").style.display = "inline";
