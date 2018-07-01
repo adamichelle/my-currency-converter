@@ -167,7 +167,9 @@ class MyConverter{
                 else{
                     let errorMsg = document.getElementById("error-msg");
                     errorMsg.style.display = 'block';
-                    errorMsg.innerHTML = "Ooops! Sorry. You can't perform that conversion offline yet! Try it out when you're online.";
+                    let text = document.createTextNode("Ooops! Sorry. You can't perform that conversion offline yet! Try it out when you're online.");
+                    let child = document.getElementById('dismiss-alert');
+                    child.parentNode.insertBefore(text, child);
                     document.getElementById("loader-icon").style.display = "none";
                 }
             })
