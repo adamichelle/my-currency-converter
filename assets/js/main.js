@@ -2,24 +2,14 @@ class MainController{
     constructor(){ 
         this.dbPromise = openDatabase();
         this.registerServiceWorker();
-        window.addEventListener('online', () => {
-            // Re-sync data with server.
-            console.log("Retriving currencies from api!");
-            this.getCurrencies();
-        }, false);
-          
-        window.addEventListener('offline', () =>  {
+        this.getCurrencies()
+        .then( () => {console.log("Retriving currencies from api!"); return;})
+        .catch( () => {
             console.log("Retriving currencies from IndexDB!");
             document.getElementById("status").style.display = "none";
             document.getElementById("status").innerHTML = "You're Offline."
             this.showCachedCurrencies();
-        }, false);
-        /* this.getCurrencies()
-        .then( () => {console.log("Retriving currencies from api!"); return;})
-        .catch( () => {
-            console.log("Retriving currencies from IndexDB!");
-            this.showCachedCurrencies();
-        }); */
+        });
 
     }
 
