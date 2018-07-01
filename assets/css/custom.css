@@ -18,8 +18,10 @@ body, input, button{ font-family: 'Roboto', sans-serif; }
 #status{ margin-top: 0%; background: #edf0f1; color: #ad2749; padding: 2px; }
 #refresh{ padding: 0.80rem auto;}
 #refresh:hover{ color: #ad2749; border: 1px solid #cccccc; }
+#refresh:focus{ outline: 0; box-shadow: 0 0 0 0.2rem rgba(202, 193, 198, 0.589); }
 #convert{ background-color: #ad2749; color: #ffffff; font-weight: bold; }
-#convert:hover{color: #ad2749; background-color: #ffffff; border: 1px solid #ad2749;}
+#convert:hover{color: #ad2749; background-color: #ffffff; border: 1px solid #ad2749; }
+#convert:focus{ outline: 0; box-shadow: 0 0 0 0.2rem rgba(94, 9, 35, 0.637); }
 #loader-icon{ display: none; }
 #app-footer { color: #ad2749; margin-bottom: 20px; margin-top: 30px;}
 #app-footer p{ margin-bottom: 0; font-size: 0.80rem; }

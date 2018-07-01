@@ -42,7 +42,7 @@
                     <div class="card-body">
                         <h1 class="card-title text-center" id="app-title">Currency Converter</h1>
                         <div class="alert text-center" id="status" role="alert"></div>
-                        <form onSubmit="return false">
+                        <form onSubmit="return false" id="converter-form">
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="fromCurrency">From:</label>
@@ -57,7 +57,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="fromCurrency">Amount:</label>
-                                    <input class="form-control" type="text" id="fromAmount" required placeholder="Amount you want to convert">
+                                    <input class="form-control" type="text" id="fromAmount" placeholder="Amount you want to convert" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="toCurrency">Conversion Result:</label>
@@ -71,6 +71,7 @@
                                     <button type="button" id="refresh" class="btn btn-lg"><i class="fas fa-sync"></i></button>
                                 </div>
                             </div>
+                            <br/>
                             <div id = "error-msg" class="alert alert-danger" role="alert"></div>
                         </form>
                     </div>

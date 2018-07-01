@@ -6,11 +6,14 @@ class MainController{
         .then( () => {console.log("Retriving currencies from api!"); return;})
         .catch( () => {
             console.log("Retriving currencies from IndexDB!");
+            document.getElementById("status").style.display = "block";
+            document.getElementById("status").innerHTML = "You're Offline."
             this.showCachedCurrencies();
         });
 
     }
 
+    
     getCurrencies() {
         const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
         return fetch(currencyListUrl)
@@ -201,6 +204,14 @@ window.addEventListener("load", (e) => {
     
     //convertion event
     document.getElementById("convert").addEventListener("click", () => {
+        const fromAmountFieldValue = document.getElementById("fromAmount").value;
+        // If amount field is empty
+        if (fromAmountFieldValue === "" || fromAmountFieldValue === null || isNaN(fromAmountFieldValue) || fromAmountFieldValue < 1) {
+            let errorMsg = document.getElementById("error-msg");
+            errorMsg.style.display = 'block';
+            errorMsg.innerHTML = "Invalid Amount entered!!";              
+            return false;
+        } 
         document.getElementById("loader-icon").style.display = "inline";
         let amount = document.getElementById("fromAmount").value,
         currencyFrom = document.getElementById("fromCurrency").value,
@@ -211,7 +222,6 @@ window.addEventListener("load", (e) => {
 
     //refresh form
     document.getElementById("refresh").addEventListener("click", () => {
-        document.getElementById("fromAmount").value = "";
-        document.getElementById("toAmount").value = "";
+        document.getElementById("converter-form").reset();
     })
 });
