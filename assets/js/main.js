@@ -204,7 +204,7 @@ window.addEventListener('offline', () => {
     document.getElementById("status").innerHTML = "You're Offline."
 }, false);
 
-window.addEventListener('offline', () => {
+window.addEventListener('online', () => {
     document.getElementById("status").style.display = "none";
 }, false);
 
