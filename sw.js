@@ -13,8 +13,20 @@ const assets = [
   `/${repository}/assets/css/bootstrap.min.css`,
   `/${repository}/assets/css/all.css`,
   `/${repository}/assets/css/custom.css`,
-  `/${repository}/assets/fonts/`,
-  `https://fonts.googleapis.com/css?family=Roboto:400,500,700`  
+  `/${repository}/assets/fonts/fa-regular-400.eot`,
+  `/${repository}/assets/fonts/fa-regular-400.svg`,
+  `/${repository}/assets/fonts/fa-regular-400.ttf`,
+  `/${repository}/assets/fonts/fa-regular-400.woff`,
+  `/${repository}/assets/fonts/fa-regular-400.woff2`,
+  `/${repository}/assets/fonts/fa-regular-400.eot`,
+  `/${repository}/assets/fonts/fa-regular-400.svg`,
+  `/${repository}/assets/fonts/fa-regular-400.ttf`,
+  `/${repository}/assets/fonts/fa-regular-400.woff`,
+  `/${repository}/assets/fonts/fa-regular-400.woff2`,
+  `/${repository}/assets/fonts/roboto-400-ext.woff2`,
+  `/${repository}/assets/fonts/roboto-400.woff2`,
+  `/${repository}/assets/fonts/roboto-900-ext.woff2`,
+  `/${repository}/assets/fonts/roboto-900.woff2`
 ]; //assets to be cached
 
 // Respond with cached resources, if there are any. If not, try fetching request
