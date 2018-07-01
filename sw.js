@@ -7,10 +7,13 @@ const assets = [
   `/${repository}/index.html`,
   `/${repository}/assets/js/jquery.js`,
   `/${repository}/assets/js/bootstrap.min.js`,
+  `/${repository}/assets/js/all.js`,
   `/${repository}/assets/js/idb.js`,
   `/${repository}/assets/js/main.js`,
-  `/${repository}/assets/css/bootstrap.min.css`, 
+  `/${repository}/assets/css/bootstrap.min.css`,
+  `/${repository}/assets/css/all.css`,
   `/${repository}/assets/css/custom.css`,
+  `/${repository}/assets/fonts/`,
   `https://fonts.googleapis.com/css?family=Roboto:400,500,700`  
 ]; //assets to be cached
 
