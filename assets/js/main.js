@@ -1,9 +1,9 @@
-class MainController{
+class MyConverter{
     constructor(){ 
         this.dbPromise = openDatabase();
         this.registerServiceWorker();
         this.getCurrencies()
-        .then( () => {console.log("Retriving currencies from api!"); return;})
+        .then( () => {document.getElementById("status").style.display = "none"; console.log("Retriving currencies from api!"); return;})
         .catch( () => {
             console.log("Retriving currencies from IndexDB!");
             document.getElementById("status").style.display = "block";
@@ -13,7 +13,7 @@ class MainController{
 
     }
 
-
+    //retrieve currencies from the api and cache them
     getCurrencies() {
         const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
         return fetch(currencyListUrl)
@@ -39,6 +39,7 @@ class MainController{
         });
     }
 
+    //display the currencies in the select dropdown
     displayCurrencyDropdown(currenciesArray){
         const select1 = document.getElementById("fromCurrency");
         const select2 = document.getElementById("toCurrency");
@@ -58,14 +59,15 @@ class MainController{
         });
     }
 
+    //Show currencies from the indexDB if network is not available
     showCachedCurrencies(){
-        let MainController = this;
+        let MyConverter = this;
 
         return this.dbPromise.then(function(db) {
             // if we're already showing posts, eg shift-refresh
             // or the very first load, there's no point fetching
             // posts from IDB
-            // if (!db || MainController) return;
+            // if (!db || MyConverter) return;
 
             const index = db.transaction('currency-list')
             .objectStore('currency-list').index('by-currencyName');
@@ -111,13 +113,13 @@ class MainController{
         let query = `${this.currencyFrom}_${this.currencyTo}`;
         let revertedQuery = `${this.currencyTo}_${this.currencyFrom}`;
         let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query},${revertedQuery}`;
-        // console.log(url);
+        
         return fetch(url).then((response) => response.json())
         .then((data) => {
             let rates = data.results;       
             let ratesArray = Object.values(rates);
 
-            // console.log(ratesArray);
+            //Store the rates in the indexDB
             this.dbPromise.then(function(db){
                 if(!db) return;
 
@@ -128,8 +130,8 @@ class MainController{
                 });
             });
 
+            //Begin Conversion
             let newAmount, convertedAmount, rateConversionName, conversionRate;
-            
             let resultEntry = ratesArray.find(rate => rate.id === query);
             if (resultEntry) {
                 conversionRate = resultEntry.val;
@@ -142,8 +144,9 @@ class MainController{
         })
         .catch( () => {
             this.dbPromise.then( (db) => {
-                if(!db) return;
+                if(!db) return; //if no db then no need to proceed
 
+                //If there's provision for indexDB, get values that match the query
                 let tx = db.transaction('rate-list');
                 let rateListStore = tx.objectStore('rate-list');
                 let rateQueryIndex = rateListStore.index('by-rateQuery');
@@ -171,7 +174,9 @@ class MainController{
         });
     }
 }
+/**End of MyConverter Class */
 
+//function to open the database
 function openDatabase(){
     // If the browser doesn't support service worker,
     // then no need to have a database
@@ -193,17 +198,23 @@ function openDatabase(){
 }
 
 
-
+//Check if user is connected or not
 window.addEventListener('offline', () => {
     document.getElementById("status").style.display = "block";
     document.getElementById("status").innerHTML = "You're Offline."
 }, false);
 
+window.addEventListener('offline', () => {
+    document.getElementById("status").style.display = "none";
+}, false);
+
+
+//When Page Loads
 window.addEventListener("load", (e) => {
     $('[data-toggle="tooltip"]').tooltip(); //initialize tool tip
-    let myCurrencyConverter = new MainController();
+    let myCurrencyConverter = new MyConverter();
     let errorMsg = document.getElementById("error-msg");
-    
+
     //convertion event
     document.getElementById("convert").addEventListener("click", () => {
         const fromAmountFieldValue = document.getElementById("fromAmount").value;
