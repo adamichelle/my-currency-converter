@@ -10,6 +10,7 @@ const assets = [
   `/${repository}/assets/js/all.js`,
   `/${repository}/assets/js/idb.js`,
   `/${repository}/assets/js/main.js`,
+  `/${repository}/assets/js/bootstrap.bundle.min.js`,
   `/${repository}/assets/css/bootstrap.min.css`,
   `/${repository}/assets/css/all.css`,
   `/${repository}/assets/css/custom.css`,

@@ -13,7 +13,7 @@ class MainController{
 
     }
 
-    
+
     getCurrencies() {
         const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
         return fetch(currencyListUrl)
@@ -200,14 +200,15 @@ window.addEventListener('offline', () => {
 }, false);
 
 window.addEventListener("load", (e) => {
+    $('[data-toggle="tooltip"]').tooltip(); //initialize tool tip
     let myCurrencyConverter = new MainController();
+    let errorMsg = document.getElementById("error-msg");
     
     //convertion event
     document.getElementById("convert").addEventListener("click", () => {
         const fromAmountFieldValue = document.getElementById("fromAmount").value;
         // If amount field is empty
         if (fromAmountFieldValue === "" || fromAmountFieldValue === null || isNaN(fromAmountFieldValue) || fromAmountFieldValue < 1) {
-            let errorMsg = document.getElementById("error-msg");
             errorMsg.style.display = 'block';
             errorMsg.innerHTML = "Invalid Amount entered!!";              
             return false;
@@ -223,5 +224,6 @@ window.addEventListener("load", (e) => {
     //refresh form
     document.getElementById("refresh").addEventListener("click", () => {
         document.getElementById("converter-form").reset();
+        errorMsg.style.display = "none";
     })
 });
