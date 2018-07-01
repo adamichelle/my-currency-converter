@@ -10,6 +10,7 @@ class MainController{
           
         window.addEventListener('offline', () =>  {
             console.log("Retriving currencies from IndexDB!");
+            document.getElementById("status").style.display = "none";
             document.getElementById("status").innerHTML = "You're Offline."
             this.showCachedCurrencies();
         }, false);
