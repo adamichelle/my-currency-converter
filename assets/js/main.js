@@ -191,12 +191,12 @@ function openDatabase(){
 
 
 
+window.addEventListener('offline', () => {
+    document.getElementById("status").style.display = "block";
+    document.getElementById("status").innerHTML = "You're Offline."
+}, false);
 
 window.addEventListener("load", (e) => {
-    window.addEventListener('offline', () => {
-        document.getElementById("status").style.display = "block";
-        document.getElementById("status").innerHTML = "You're Offline."
-    }, false);
     let myCurrencyConverter = new MainController();
     
     //convertion event

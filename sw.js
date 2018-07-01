@@ -1,5 +1,5 @@
 const app_prefix = 'CurrencyConverter_'; //name of the app
-const version = 'version_01';    //version of cache
+const version = 'version_02';    //version of cache
 const cache_name = `${app_prefix}${version}`; //cache name
 const repository = 'my-currency-converter'; //name of the repo
 const assets = [                            
