@@ -3,8 +3,7 @@ const version = 'version_01';    //version of cache
 const cache_name = `${app_prefix}${version}`; //cache name
 const repository = 'my-currency-converter'; //name of the repo
 const assets = [                            
-  `./`,                     
-  `./index.html`,
+  `./`,
   `./assets/js/jquery.js`,
   `./assets/js/bootstrap.min.js`,
   `./assets/js/all.js`,
