@@ -45,6 +45,7 @@ self.addEventListener('install', event => {
       caches.open(cache_name).then(cache => {
         console.log('installing cache : ' + cache_name)
         return cache.addAll(assets)
+        .catch((e) => console.log(e))
       })
     )
 });
