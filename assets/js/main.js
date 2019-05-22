@@ -15,7 +15,7 @@ class MyConverter{
 
     //retrieve currencies from the api and cache them
     getCurrencies() {
-        const currencyListUrl = "https://free.currencyconverterapi.com/api/v5/currencies";
+        const currencyListUrl = "https://free.currconv.com/api/v7/currencies?apiKey=8ba20ab26fd911197977";
         return fetch(currencyListUrl)
         .then((resp) => resp.json()) // Transform the data into json
         .then((data) => {
@@ -112,7 +112,7 @@ class MyConverter{
         this.currencyTo = currencyTo;
         let query = `${this.currencyFrom}_${this.currencyTo}`;
         let revertedQuery = `${this.currencyTo}_${this.currencyFrom}`;
-        let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query},${revertedQuery}`;
+        let url = `https://free.currconv.com/api/v7/convert?q=${query},${revertedQuery}&compact=ultra&apiKey=8ba20ab26fd911197977`;
         
         return fetch(url).then((response) => response.json())
         .then((data) => {
