@@ -19,11 +19,6 @@ const assets = [
   `/${repository}/assets/webfonts/fa-regular-400.ttf`,
   `/${repository}/assets/webfonts/fa-regular-400.woff`,
   `/${repository}/assets/webfonts/fa-regular-400.woff2`,
-  `/${repository}/assets/webfonts/fa-regular-400.eot`,
-  `/${repository}/assets/webfonts/fa-regular-400.svg`,
-  `/${repository}/assets/webfonts/fa-regular-400.ttf`,
-  `/${repository}/assets/webfonts/fa-regular-400.woff`,
-  `/${repository}/assets/webfonts/fa-regular-400.woff2`,
   `/${repository}/assets/webfonts/roboto-400-ext.woff2`,
   `/${repository}/assets/webfonts/roboto-400.woff2`,
   `/${repository}/assets/webfonts/roboto-900-ext.woff2`,
@@ -46,6 +41,7 @@ self.addEventListener('install', event => {
       caches.open(cache_name).then(cache => {
         console.log('installing cache : ' + cache_name)
         return cache.addAll(assets)
+        .catch((e) => console.log(e))
       })
     )
 });
